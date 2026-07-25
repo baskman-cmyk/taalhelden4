@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#4a90e2">
+  <title>Taalhelden – Groep 4 t/m 7</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="leesavontuur_module/leesavontuur.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="app-header">
+      <div class="header-main-row">
+        <div class="brand compact-brand">
+          <img class="brand-logo mascot-only" src="./assets/taalhelden-logo-oud-stijl.png" alt="Taalhelden-mascotte">
+          <span class="brand-wordmark" aria-label="Taalhelden"><strong>Taal</strong><b>helden</b></span>
+        </div>
+
+        <div class="header-stat-card" aria-label="Aantal punten">
+          <span class="header-stat-icon" aria-hidden="true">⭐</span>
+          <div><strong id="stat-points">0</strong><small>punten</small></div>
+        </div>
+
+        <div class="header-stat-card" aria-label="Aantal behaalde beloningen">
+          <span class="header-stat-icon" aria-hidden="true">🎁</span>
+          <div><strong id="stat-rewards">0</strong><small>behaalde beloningen</small></div>
+        </div>
+
+        <div class="header-actions" aria-label="App-opties">
+          <button id="btn-app-info" class="header-icon-button" type="button" aria-label="Informatie over Taalhelden" title="Over deze app">ℹ️</button>
+          <button class="header-icon-button" data-view="settings" type="button" aria-label="Instellingen openen" title="Instellingen">⚙️</button>
+        </div>
+      </div>
+
+      <div class="header-reward-progress" aria-label="Voortgang naar de volgende beloning">
+        <div class="header-reward-label">
+          <span>Volgende beloning</span>
+          <strong id="reward-progress-text">0 / 500 punten</strong>
+        </div>
+        <div class="meter compact-reward-meter"><div id="reward-progress-fill"></div></div>
+      </div>
+      <span id="active-level-name" class="visually-hidden">Groep 4</span>
+    </header>
+
+    <section id="dashboard-view" class="view active">
+      <section class="level-picker" aria-label="Kies niveau">
+        <h2>Kies je groep</h2>
+        <div class="level-tiles">
+          <button class="level-tile active" data-level="gr4"><span>4</span><strong>Groep 4</strong></button>
+          <button class="level-tile" data-level="gr5"><span>5</span><strong>Groep 5</strong></button>
+          <button class="level-tile" data-level="gr6"><span>6</span><strong>Groep 6</strong></button>
+          <button class="level-tile" data-level="gr7"><span>7</span><strong>Groep 7</strong></button>
+        </div>
+      </section>
+
+      <div class="dashboard-main">
+      <div class="tile-grid">
+        <button class="tile" data-mode="lezen"><span>📖</span><strong>Begrijpend lezen</strong><small>Lange en korte teksten</small></button>
+        <button class="tile" data-mode="spelling"><span>✏️</span><strong>Spelling</strong><small>Kies het juiste woord</small></button>
+        <button class="tile" data-mode="dictee"><span>🎤</span><strong>Dictee</strong><small>Luister en schrijf</small></button>
+        <button class="tile" data-mode="grammatica"><span>📝</span><strong>Grammatica</strong><small>Zinsdelen en woordsoorten</small></button>
+        <button class="tile" data-mode="woordenschat"><span>📚</span><strong>Woordenschat</strong><small>Betekenis en woordkeuze</small></button>
+        <button class="tile" data-mode="woordtrainer"><span>🃏</span><strong>Woordjes trainen</strong><small>Flitskaarten met uitleg</small></button>
+        <button class="tile" data-mode="engels"><span>🇬🇧</span><strong>Engels</strong><small>Vertalen en luisteren</small></button>
+        <button class="tile leesavontuur-tile" data-view="leesavontuur"><span>🌍</span><strong>Leesavontuur</strong><small>Doorlopende reisverhalen die steeds uitdagender worden</small></button>
+      </div>
+      <aside class="dashboard-progress-card">
+        <h2>📊 Voortgang</h2>
+        <div id="dashboard-progress"></div>
+        <button class="button secondary dashboard-progress-button" data-view="progress" type="button">Bekijk alle resultaten</button>
+      </aside>
+      </div>
+    </section>
+
+    <section id="workspace-view" class="view">
+      <div class="workspace-header">
+        <div>
+          <h2 id="workspace-title">Oefening</h2>
+          <p id="workspace-subtitle"></p>
+        </div>
+        <button class="button danger back-button" type="button">Stop</button>
+      </div>
+      <div class="meter question-meter"><div id="workspace-progress"></div></div>
+      <div id="dynamic-content"></div>
+      <div id="workspace-feedback" class="feedback" role="status"></div>
+      <div class="workspace-actions">
+        <button id="btn-submit-answer" class="button primary" type="button">Controleer</button>
+        <button id="btn-next-question" class="button warning" type="button">Volgende</button>
+      </div>
+    </section>
+
+    <section id="leesavontuur-view" class="view leesavontuur-host-view">
+      <div class="section-header leesavontuur-app-header">
+        <div><h2>Leesavontuur</h2><p>Reis, lees en ontdek de wereld.</p></div>
+        <button class="button secondary back-button" type="button">Terug naar Taalhelden</button>
+      </div>
+      <div id="leesavontuur-root"></div>
+    </section>
+
+    <section id="progress-view" class="view">
+      <div class="section-header">
+        <div><h2>Voortgang</h2><p>Resultaten blijven bewaard op dit apparaat.</p></div>
+        <button class="button secondary back-button" type="button">Terug</button>
+      </div>
+      <div id="progress-overview" class="progress-grid"></div>
+      <h3>Laatste sessies</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Datum</th><th>Onderdeel</th><th>Niveau</th><th>Score</th></tr></thead>
+          <tbody id="history-rows"></tbody>
+        </table>
+      </div>
+    </section>
+
+
+
+    <section id="goals-view" class="view">
+      <div class="section-header">
+        <div><h2>Leerdoelen en leerlijnen</h2><p>Afstemming op landelijke kaders en gangbare taalmethodes.</p></div>
+        <button class="button secondary back-button" type="button">Terug</button>
+      </div>
+      <div id="goals-content"></div>
+    </section>
+
+    <section id="settings-view" class="view">
+      <div class="section-header">
+        <div><h2>Instellingen</h2><p>Pas de app aan of wis opgeslagen gegevens.</p></div>
+        <button class="button secondary back-button" type="button">Terug</button>
+      </div>
+
+      <div class="settings-card">
+        <label for="theme-select">Weergave</label>
+        <select id="theme-select">
+          <option value="light">Licht</option>
+          <option value="dark">Donker</option>
+        </select>
+
+        <label for="speech-rate">Voorleessnelheid</label>
+        <select id="speech-rate">
+          <option value="0.7">Langzaam</option>
+          <option value="0.85">Normaal</option>
+          <option value="1">Snel</option>
+        </select>
+        <p class="settings-note"><strong>Lengte oefeningen:</strong> 15 opdrachten per gewone oefening en 25 kaarten in Woordjes trainen.</p>
+      </div>
+
+      <div class="settings-card danger-zone reset-zone">
+        <h3>Gegevens wissen</h3>
+        <p>De onderdelen hieronder worden los van elkaar gewist. Iedere knop vraagt eerst om bevestiging.</p>
+        <button id="btn-points-reset" class="button warning" type="button">Alleen punten wissen</button>
+        <button id="btn-rewards-reset" class="button warning" type="button">Alleen beloningen wissen</button>
+        <button id="btn-progress-reset" class="button danger" type="button">Alleen voortgang wissen</button>
+        <button id="btn-hard-reset" class="button danger" type="button">Alles wissen</button>
+      </div>
+    </section>
+
+    <div id="reward-dialog" class="modal" hidden>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="reward-title">
+        <div class="reward-icon">🎁</div>
+        <h2 id="reward-title">Beloning verdiend!</h2>
+        <p>Je hebt 500 punten verzameld en een beloning verdiend!</p>
+        <button id="reward-close" class="button primary" type="button">Verder oefenen</button>
+      </div>
+    </div>
+
+    <div id="loading-overlay" class="loading">
+      <div class="spinner"></div>
+      <p>Oefeningen laden…</p>
+    </div>
+  </main>
+
+  <script src="leesavontuur_module/leesavontuur-data.js"></script>
+  <script src="leesavontuur_module/leesavontuur.js"></script>
+  <script type="module" src="./main.js?v=4.3.3"></script>
+  <div id="app-info-dialog" class="modal-backdrop" hidden>
+    <section class="info-dialog" role="dialog" aria-modal="true" aria-labelledby="app-info-title">
+      <div class="info-dialog-header">
+        <div>
+          <h2 id="app-info-title">Over Taalhelden</h2>
+          <p>Inhoud, leerdoelen, bronnen en verantwoording</p>
+        </div>
+        <button id="app-info-close" class="dialog-close" type="button" aria-label="Sluiten">✕</button>
+      </div>
+
+      <div class="info-tabs" role="tablist" aria-label="Informatie over de app">
+        <button class="info-tab active" data-info-tab="inhoud" type="button">Inhoud</button>
+        <button class="info-tab" data-info-tab="leerdoelen" type="button">Leerdoelen</button>
+        <button class="info-tab" data-info-tab="bronnen" type="button">Bronnen</button>
+        <button class="info-tab" data-info-tab="over" type="button">Over</button>
+      </div>
+
+      <div class="info-dialog-content">
+        <section class="info-tab-panel active" data-info-panel="inhoud">
+          <section class="info-panel">
+            <h3>Toegevoegde oefenbank</h3>
+            <div class="info-stats-grid">
+              <div class="info-stat"><strong>5.000</strong><span>Spelling</span></div>
+              <div class="info-stat"><strong>3.000</strong><span>Woordenschat</span></div>
+              <div class="info-stat"><strong>800</strong><span>Begrijpend lezen</span></div>
+              <div class="info-stat"><strong>2.000</strong><span>Dictee</span></div>
+            </div>
+            <p>Deze aantallen komen boven op de bestaande taalzinnen, grammatica, lange leesteksten, Engelse oefeningen en woordenschatbestanden voor groep 6 en 7.</p>
+          </section>
+
+          <section class="info-panel">
+            <h3>Wat bevat de app?</h3>
+            <ul>
+              <li>Niveaukeuze voor groep 4, 5, 6 en 7.</li>
+              <li>Een pagina met leerdoelen per groep.</li>
+              <li>Spelling, dictee, grammatica, woordenschat, begrijpend lezen en Engels.</li>
+              <li>Contextvragen, verbanden, hoofdgedachte, argumenten en samenvatten.</li>
+              <li>Aparte resetknoppen voor punten, beloningen en voortgang.</li>
+              <li>Een puntenvrije woordtrainer met 25 omkeerbare flitskaarten en uitspraak van alleen het woord.</li>
+              <li>Leesavontuur met doorlopende reisverhalen, woordenschat, vragen, illustraties en directe feedback.</li>
+            </ul>
+          </section>
+        </section>
+
+        <section class="info-tab-panel" data-info-panel="leerdoelen">
+          <section class="info-panel">
+            <h3>Opbouw per niveau</h3>
+            <ul>
+              <li>Groep 4 en 5: systematische opbouw naar referentieniveau 1F.</li>
+              <li>Groep 6: oefenen op en rond referentieniveau 1F.</li>
+              <li>Groep 7: versteviging van 1F en een eerste aanloop naar 2F.</li>
+            </ul>
+          </section>
+          <section class="info-panel">
+            <h3>Taalonderdelen</h3>
+            <p>De leerlijn bevat spelling van niet-werkwoorden, leestekens, werkwoordspelling, grammatica, tekstbegrip, woordenschat, verbanden, hoofdgedachte, argumenten en samenvatten.</p>
+          </section>
+        </section>
+
+        <section class="info-tab-panel" data-info-panel="bronnen">
+          <section class="info-panel">
+            <h3>Afstemming</h3>
+            <p>De inhoud is afgestemd op de openbare uitgangspunten en leerlijnen van:</p>
+            <div class="method-tags">
+              <span>Staal</span>
+              <span>Taal Actief</span>
+              <span>Nieuw Nederlands Junior</span>
+              <span>Cito Leerling in beeld</span>
+              <span>SLO-kerndoelen</span>
+              <span>Referentieniveau 1F en 2F</span>
+            </div>
+          </section>
+          <section class="info-panel">
+            <h3>Cito en SLO</h3>
+            <p>Bij taalverzorging ligt de nadruk onder meer op spelling van niet-werkwoorden, leestekens en in de hogere groepen werkwoordspelling. Bij begrijpend lezen staan tekstbegrip, woordenschat en het leggen van verbanden centraal.</p>
+            <p>De app vermeldt zowel de geldende kerndoelen als de geactualiseerde kerndoelen van 2026. De geactualiseerde doelen zijn als vooruitblik opgenomen.</p>
+          </section>
+        </section>
+
+        <section class="info-tab-panel" data-info-panel="over">
+          <section class="info-panel">
+            <h3>Eigen oefenmateriaal</h3>
+            <p>De oefeningen zijn nieuw en zelf samengesteld. Er zijn geen beschermde Cito-toetsvragen of methodepagina’s van Staal, Taal Actief of Nieuw Nederlands Junior gekopieerd. De afstemming gaat over leerdoelen, categorieën en didactische opbouw.</p>
+          </section>
+          <section class="info-panel">
+            <h3>Versie</h3>
+            <p>Taalhelden versie 4.2 — groep 4 tot en met 7.</p>
+          </section>
+        </section>
+      </div>
+
+      <div class="info-dialog-footer">
+        <button id="app-info-close-bottom" class="button primary" type="button">Sluiten</button>
+      </div>
+    </section>
+  </div>
+
+</body>
+</html>

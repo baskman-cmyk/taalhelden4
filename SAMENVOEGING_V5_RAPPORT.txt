@@ -1,0 +1,12 @@
+Taalhelden v5.0 samenvoeging
+
+Basis: v4.8 geïntegreerd.
+Toegevoegd: begrijpend lezen bestanden groep 4 t/m 7.
+
+Begrijpend lezen aantallen na toevoeging:
+Groep 4: 76 opdrachten
+Groep 5: 56 opdrachten
+Groep 6: 300 opdrachten
+Groep 7: 241 opdrachten
+
+Leesavontuur is niet gebruikt voor deze telling en blijft een aparte module.

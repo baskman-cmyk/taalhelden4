@@ -1,0 +1,2 @@
+Alle 72 oude leesavontuur-covers zijn verwijderd en vervangen door USA-illustraties.
+De actieve bestanden staan in assets/verhalen/verhaal-00.webp t/m verhaal-71.webp.

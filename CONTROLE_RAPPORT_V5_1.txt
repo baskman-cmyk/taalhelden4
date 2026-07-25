@@ -1,0 +1,31 @@
+TAALHELDEN V5.1 – CONTROLE EN HERSTEL
+
+Belangrijkste bevindingen in v5.0:
+1. De nieuwe begrijpend-lezenbestanden van groep 4, 5 en 6 stonden als geneste teksten in de data, maar de datalader verwerkte alleen oude losse vragen. Daardoor werden de nieuwe teksten feitelijk niet gebruikt.
+2. De nieuwe groep-7-opdrachten ontbraken volledig uit de appdata.
+3. De antwoordschudder zette het goede antwoord om naar een index, terwijl de rest van de app antwoordteksten gebruikt. Daardoor konden correcte antwoorden als fout worden beoordeeld.
+4. De renderer schudde de antwoorden daarna nogmaals, waardoor een gecontroleerde antwoordverdeling onmogelijk was.
+
+Hersteld in v5.1:
+- Nieuwe teksten met vijf vragen worden correct omgezet naar losse oefenvragen met een gedeeld textId.
+- Groep 7 is alsnog volledig toegevoegd.
+- Zowel drie- als vierkeuzevragen worden geaccepteerd.
+- Het correcte antwoord blijft een antwoordtekst.
+- Antwoordposities worden per sessie evenwichtig verdeeld zonder vast patroon.
+- De renderer schudt de antwoorden niet nogmaals.
+- Begrijpend lezen kiest 15 verschillende teksten per sessie.
+- Teksten worden eerst doorlopen voordat dezelfde tekst in een volgende ronde terugkeert.
+- Leesavontuur blijft een aparte module met 72 verhalen.
+
+Gecontroleerde begrijpend-lezenbank na laden:
+- Groep 4: 74 unieke teksten, 296 vragen
+- Groep 5: 49 unieke teksten, 196 vragen
+- Groep 6: 266 unieke teksten, 516 vragen
+- Groep 7: 151 unieke teksten, 335 vragen
+
+Leesavontuur:
+- 72 verhalen aanwezig
+- 72 verhaalrecords hebben een werkende image-verwijzing
+- 18 beschikbare echte locatieafbeeldingen worden getoond
+- verhalen zonder beschikbare locatieafbeelding gebruiken automatisch hun bestaande SVG-cover
+- de Leesavontuur-code gebruikt nu daadwerkelijk het image-veld (in v5.0 werd dit genegeerd)
